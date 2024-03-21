@@ -11,6 +11,8 @@ import { RECORDS_QUERY } from '~/sanity/queries';
 import type { RecordStub } from '~/types/record';
 import { recordStubsZ } from '~/types/record';
 
+export const config = { runtime: 'edge' };
+
 export const meta: MetaFunction<
   typeof loader,
   {
