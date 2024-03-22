@@ -1,6 +1,7 @@
 import type { LoaderFunctionArgs, MetaFunction } from '@remix-run/node';
 import { json } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
+import type { HeadersFunction } from '@vercel/remix';
 
 import { Records } from '~/components/Records';
 import type { Loader as RootLoader } from '~/root';
@@ -23,6 +24,10 @@ export const meta: MetaFunction<
 
   return [{ title }];
 };
+
+export const headers: HeadersFunction = () => ({
+  'Cache-Control': 's-maxage=1, stale-while-revalidate=59',
+});
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const stegaEnabled = isStegaEnabled(request.url);
